@@ -5,8 +5,8 @@ export const siteConfig = {
   author: 'thecloer',
   email: 'chltjrrb97@gmail.com',
   links: {
-    twitter: 'https://twitter.com/jollyshopland',
-    github: 'https://github.com/jolbol1',
+    twitter: 'https://twitter.com/the_cloer',
+    github: 'https://github.com/thecloer',
     linkedIn: 'https://jamesshopland.com',
   },
 } as const;
