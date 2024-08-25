@@ -1,23 +1,20 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
+import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
-import './globals.css';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/configs/site';
-import { ThemeProvider } from 'next-themes';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
+  authors: {
+    name: siteConfig.author,
+    url: siteConfig.links.github,
+  },
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? siteConfig.url),
-};
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: 'prefers-color-scheme: light', color: 'white' },
-    { media: 'prefers-color-scheme: dark', color: 'black' },
-  ],
 };
 
 export default function RootLayout({
@@ -26,10 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko' className='scroll-pt-[--heading-height]'>
-      <body className={cn('font-sans antialiased', inter.variable)}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          <div className='relative flex flex-col bg-background min-h-dvh'>{children}</div>
+    <html lang='ko' suppressHydrationWarning>
+      <body className={cn('font-sans antialiased relative bg-background h-dvh', inter.variable)}>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='light'
+          enableSystem={false}
+          storageKey='thecloer-blog-theme'
+          disableTransitionOnChange
+        >
+          {children}
         </ThemeProvider>
       </body>
     </html>
