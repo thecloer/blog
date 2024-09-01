@@ -8,5 +8,5 @@ type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top
 export const ToasterWithTheme = ({ position }: { position: Position }) => {
   const { theme } = useTheme();
 
-  return <Toaster position={position} theme={theme as 'dark' | 'light'} toastOptions={{ duration: 2000 }} richColors />;
+  return <Toaster theme={theme as 'dark' | 'light'} position={position} richColors duration={20000} />;
 };
