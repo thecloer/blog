@@ -2,13 +2,13 @@
 
 import React, { ReactNode } from 'react';
 
-type SidebarItemProps = {
+type BaseSidebarItemProps = {
   label: string;
   Icon: ReactNode;
   onClick: () => void;
 };
 
-export const SidebarItem = ({ Icon, label, onClick }: SidebarItemProps) => {
+export const BaseSidebarItem = ({ Icon, label, onClick }: BaseSidebarItemProps) => {
   return (
     <div
       onClick={() => onClick()}
