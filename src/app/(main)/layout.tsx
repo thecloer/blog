@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import { Navigation } from './_components/navigation';
+import { ToasterWithTheme } from '@/components/ToasterWithTheme';
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
@@ -11,6 +12,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
           <div className='flex-1 scroll-pt-11 overflow-y-auto'>{children}</div>
         </div>
       </Navigation.Provider>
+      <ToasterWithTheme position='bottom-right' />
     </div>
   );
 }

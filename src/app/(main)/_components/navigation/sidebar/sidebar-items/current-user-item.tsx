@@ -13,13 +13,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-export const UserItem = () => {
-  // FIXME:
+export const CurrentUserItem = () => {
   const user = {
     nickname: 'thecloer',
     email: 'thecloer@gmail.com',
     avatarUrl: 'https://avatars.githubusercontent.com/u/83699438?v=4',
-  };
+  }; // FIXME: Use current user data
 
   return (
     <DropdownMenu>
