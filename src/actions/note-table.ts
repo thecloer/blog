@@ -4,8 +4,6 @@ import { z } from 'zod';
 import { randomUUID } from 'crypto';
 import { revalidatePath } from 'next/cache';
 
-// const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 const NoteSchema = z.object({
   title: z.string(),
   isArchived: z.boolean(), // for soft delete
