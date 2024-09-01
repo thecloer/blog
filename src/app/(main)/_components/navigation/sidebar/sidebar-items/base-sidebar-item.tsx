@@ -1,14 +1,23 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
 type BaseSidebarItemProps = {
+  icon: LucideIcon;
   label: string;
-  Icon: ReactNode;
   onClick: () => void;
+
+  id?: string;
+  NoteIcon?: string;
+  active?: boolean;
+  expanded?: boolean;
+  isSearch?: boolean;
+  level?: number;
+  onExpand?: () => void;
 };
 
-export const BaseSidebarItem = ({ Icon, label, onClick }: BaseSidebarItemProps) => {
+export const BaseSidebarItem = ({ icon: Icon, label, onClick }: BaseSidebarItemProps) => {
   return (
     <div
       onClick={() => onClick()}
@@ -16,7 +25,7 @@ export const BaseSidebarItem = ({ Icon, label, onClick }: BaseSidebarItemProps) 
       style={{ marginLeft: '0px' }}
       className='flex items-center gap-x-2 hover:bg-primary/5 px-3 py-1 w-full min-h-7 font-medium text-muted-foreground text-sm group'
     >
-      {Icon}
+      <Icon className='w-4 h-4 shrink-0' />
       <span className='truncate'>{label}</span>
     </div>
   );

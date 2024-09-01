@@ -21,7 +21,5 @@ export const NewNoteItem = () => {
     });
   };
 
-  return (
-    <BaseSidebarItem Icon={<PlusCircle className='w-4 h-4 shrink-0' />} label='New Note' onClick={handelNewNote} />
-  );
+  return <BaseSidebarItem icon={PlusCircle} label='New Note' onClick={handelNewNote} />;
 };
