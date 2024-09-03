@@ -1,24 +1,18 @@
 import React from 'react';
-import { getNotes } from '@/actions';
-import { SidebarContainer } from './sidebar-container';
-import { SidebarCollapseButton } from './sidebar-collapse-button';
-import { CurrentUserItem, NewNoteItem } from './sidebar-items';
+
+import { SidebarContainer } from './components/sidebar-container';
+import { SidebarCollapseButton } from './components/sidebar-collapse-button';
+import { CurrentUserItem } from './components/current-user-item';
+import { ToolSection } from './tool-section';
+import { PostSection } from './post-section';
 
 export const Sidebar = async () => {
-  const notes = await getNotes();
-
   return (
     <SidebarContainer>
       <SidebarCollapseButton />
-
       <CurrentUserItem />
-      <NewNoteItem />
-
-      <ul className='mt-4'>
-        {notes.map((note) => (
-          <li key={note.id}>{note.title}</li>
-        ))}
-      </ul>
+      <ToolSection />
+      <PostSection />
     </SidebarContainer>
   );
 };

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ChevronsLeft } from 'lucide-react';
-import { useNavigationControl } from '../navigation-control-context';
+import { useNavigationControl } from '../../navigation-control-context';
 
 export const SidebarCollapseButton = () => {
   const { collapseSidebar } = useNavigationControl();

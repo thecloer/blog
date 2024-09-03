@@ -1,1 +1,1 @@
-export * from './note-table';
+export * from './post-table';

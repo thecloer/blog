@@ -1,5 +1,5 @@
-import { ChevronsRight, Menu } from 'lucide-react';
 import React from 'react';
+import { ChevronsRight, Menu } from 'lucide-react';
 import { useNavigationControl } from '../navigation-control-context';
 
 export const SidebarExpandButton = () => {
@@ -14,5 +14,3 @@ export const SidebarExpandButton = () => {
     </button>
   );
 };
-
-// top-3 right-2 absolute hover:bg-neutral-300 dark:hover:bg-neutral-600 opacity-0 group-hover/sidebar:opacity-100 rounded-sm w-6 h-6 text-muted-foreground transition

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import { useNavigationControl } from '../navigation-control-context';
+import { useNavigationControl } from '../../navigation-control-context';
 import { cn } from '@/lib/utils';
 
 export const SidebarContainer = ({ children }: PropsWithChildren) => {
@@ -11,7 +11,7 @@ export const SidebarContainer = ({ children }: PropsWithChildren) => {
     <aside
       ref={sidebarRef}
       className={cn(
-        'absolute mobile:relative z-50 flex flex-col bg-secondary w-60 h-full overflow-y-auto group/sidebar translate-x-0',
+        'absolute mobile:relative z-50 flex flex-col bg-secondary w-60 h-full group/sidebar translate-x-0 overflow-hidden',
         isSetting && 'transition-all ease-in-out duration-300',
         isCollapsed && '-translate-x-full'
       )}
@@ -21,8 +21,7 @@ export const SidebarContainer = ({ children }: PropsWithChildren) => {
       {!isMobile && (
         <div
           onMouseDown={handleResizeMouseDown}
-          onClick={() => {}}
-          className='top-0 right-0 absolute bg-primary/10 opacity-0 group-hover/sidebar:opacity-100 w-1 h-full transition cursor-ew-resize'
+          className='top-0 right-0 absolute flex justify-center bg-primary/10 opacity-0 group-hover/sidebar:opacity-100 w-1 h-full transition cursor-ew-resize'
         />
       )}
     </aside>

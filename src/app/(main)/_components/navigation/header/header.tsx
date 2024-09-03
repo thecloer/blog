@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-
-import { useNavigationControl } from '../navigation-control-context';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { SidebarExpandButton } from './sidebar-expand-button';
 import { Button } from '@/components/ui/button';
+import { useNavigationControl } from '../navigation-control-context';
+import { SidebarExpandButton } from './sidebar-expand-button';
 
 export const Header = () => {
   const { headerRef, isCollapsed } = useNavigationControl();
