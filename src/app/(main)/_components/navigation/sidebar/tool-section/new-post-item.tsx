@@ -5,10 +5,12 @@ import { PlusCircle } from 'lucide-react';
 import { createPost } from '@/actions';
 import { toast } from 'sonner';
 import { BaseItem } from '../components/base-item';
+import siteConfig from '@/configs/site';
 
 export const NewPostItem = () => {
   const handelNewPost = useCallback(() => {
     const promise = createPost({
+      authorId: siteConfig.author, // TODO: use auth
       title: 'New Post',
       isArchived: false,
       isPublished: false,

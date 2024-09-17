@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { createPost, SidebarPost } from '@/actions';
 import { BaseItem } from '../components/base-item';
 import { PostList } from './post-list';
+import siteConfig from '@/configs/site';
 
 type PostItemProps = {
   post: SidebarPost;
@@ -30,6 +31,7 @@ export const PostItem = ({ post: { id, icon, title, children }, level = 0 }: Pos
   const addChildPage = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     const promise = createPost({
+      authorId: siteConfig.author, // TODO: use auth
       parentPostId: id,
       title: 'A Child Post',
       isArchived: false,
