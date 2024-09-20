@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const ClientPostSchema = z.object({
-  authorId: z.string(), // TODO: set min, max length
+  author: z.string(), // TODO: add authorId
   title: z.string(),
   isArchived: z.boolean(), // for soft delete
   isPublished: z.boolean(), // for public view
@@ -22,7 +22,7 @@ export type ServerPost = z.infer<typeof ServerPostSchema>;
 
 export const UpdatePostDtoSchema = ClientPostSchema.partial().merge(
   z.object({
-    authorId: ClientPostSchema.shape.authorId, // override PostClientSchema partial authorId
+    author: ClientPostSchema.shape.author, // override PostClientSchema partial author
     postId: z.string().uuid(),
   })
 );

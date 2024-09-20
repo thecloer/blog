@@ -10,5 +10,3 @@ export const siteConfig = {
     linkedIn: 'https://www.linkedin.com/in/thecloer/',
   },
 } as const;
-
-export default siteConfig;

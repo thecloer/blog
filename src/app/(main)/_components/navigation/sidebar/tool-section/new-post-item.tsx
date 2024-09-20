@@ -5,12 +5,13 @@ import { PlusCircle } from 'lucide-react';
 import { createPost } from '@/actions';
 import { toast } from 'sonner';
 import { BaseItem } from '../components/base-item';
-import siteConfig from '@/configs/site';
+import { useUser } from '@/hooks/useUser';
 
 export const NewPostItem = () => {
+  const { user } = useUser(); // TODO: useUser
   const handelNewPost = useCallback(() => {
     const promise = createPost({
-      authorId: siteConfig.author, // TODO: use auth
+      author: user.name,
       title: 'New Post',
       isArchived: false,
       isPublished: false,
@@ -21,7 +22,7 @@ export const NewPostItem = () => {
       success: 'Post created!',
       error: (error) => `Failed to create post: ${error.message}`,
     });
-  }, []);
+  }, [user]);
 
   return (
     <BaseItem

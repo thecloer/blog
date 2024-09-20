@@ -58,10 +58,10 @@ export const updatePost = async (updatePostDto: UpdatePostDto) => {
     console.error(validateResult.error);
     throw new Error(`Invalid Updating Post: ${validateResult.error.message}`);
   }
-  const { postId, authorId, ...data } = validateResult.data;
+  const { postId, author, ...data } = validateResult.data;
 
   const oldPost = await getPost(postId);
-  if (oldPost.authorId !== authorId) {
+  if (oldPost.author !== author) {
     throw new Error(`Not Allowed to Update the Post with id: ${postId}`);
   }
 
@@ -81,10 +81,11 @@ export const updatePost = async (updatePostDto: UpdatePostDto) => {
  * @param {{ userId: string; postId: string }} deletePostDto The `postId` to delete and `userId` who ask to delete.
  * @returns {ServerPost} The deleted post.
  */
-export const deletePost = async ({ userId, postId }: { userId: string; postId: string }) => {
+export const deletePost = async ({ author, postId }: { author: string; postId: string }) => {
   const post = await getPost(postId);
-  if (post.authorId !== userId) {
-    throw new Error(`Not Allowed to Delete the Post with postId ${postId} by userId: ${userId}`);
+  // TODO: use user id
+  if (post.author !== author) {
+    throw new Error(`Not Allowed to Delete the Post with postId ${postId} by ${author}`);
   }
   const deletedPost = { ...post, isArchived: true };
   PostTable.set(postId, deletedPost);
@@ -111,11 +112,11 @@ const sortSidebarPosts = (posts: SidebarPost[]) => {
  * The server action to get the sidebar posts.
  * @returns The sidebar posts.
  */
-export const getSidebarPosts = async (userId: string) => {
-  const allSidebarPosts: SidebarPost[] = Array.from(PostTable.values())
-    .filter(({ authorId }) => authorId === userId)
-    .map(({ id, isArchived, isPublished, title, icon, parentPostId, updatedAt }) => ({
+export const getSidebarPosts = async () => {
+  const allSidebarPosts: SidebarPost[] = Array.from(PostTable.values()).map(
+    ({ id, author, isArchived, isPublished, title, icon, parentPostId, updatedAt }) => ({
       id,
+      author,
       isArchived,
       isPublished,
       title,
@@ -123,7 +124,8 @@ export const getSidebarPosts = async (userId: string) => {
       parentPostId,
       updatedAt,
       children: [] as SidebarPost[],
-    }));
+    })
+  );
   const sidebarPostMap = new Map(allSidebarPosts.map((post) => [post.id, post]));
 
   allSidebarPosts.forEach((post) => {
